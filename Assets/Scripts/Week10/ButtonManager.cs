@@ -6,13 +6,20 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     public Button plr1Button;
-    public Button plr2Button; 
+    public Button plr2Button;
+
+    private void Start()
+    {
+
+        plr1Button.enabled = true;
+        plr2Button.enabled = false;
+
+    }
 
     public void enablePlr1Attack()
     {
         plr1Button.enabled = true;
         plr2Button.enabled = false; 
-
 
     }
 
