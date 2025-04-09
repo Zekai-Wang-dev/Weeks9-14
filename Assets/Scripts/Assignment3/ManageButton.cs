@@ -8,13 +8,14 @@ public class ManageButton : MonoBehaviour
 {
 
     public Button attackButton;
+    public bool attacking; 
 
     public UnityEvent attackEvent; 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        attacking = false; 
         attackButton.onClick.AddListener(startAttack);
 
     }
@@ -22,13 +23,33 @@ public class ManageButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
+
+
     }
 
     public void startAttack()
     {
 
         attackEvent.Invoke();
+
+    }
+
+    public void changeCurrentState()
+    {
+
+        attacking = !attacking;
+
+        if (attacking)
+        {
+            attackButton.onClick.RemoveAllListeners();
+
+        }
+        else
+        {
+            attackButton.onClick.AddListener(startAttack);
+        }
 
     }
 
