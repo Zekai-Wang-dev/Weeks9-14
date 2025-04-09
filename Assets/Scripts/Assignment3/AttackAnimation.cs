@@ -24,6 +24,7 @@ public class AttackAnimation : MonoBehaviour
     public Coroutine atkAct;
     public Coroutine swingAct;
     public Coroutine returnAct;
+    public Coroutine returnSwingAct; 
 
     private void Awake()
     {
@@ -37,7 +38,6 @@ public class AttackAnimation : MonoBehaviour
     void Start()
     {
 
-        activateAttack();
 
     }
 
@@ -50,6 +50,7 @@ public class AttackAnimation : MonoBehaviour
     public void activateAttack()
     {
 
+        atkAct = StartCoroutine(animateAttack());
 
     }
 
@@ -84,8 +85,6 @@ public class AttackAnimation : MonoBehaviour
             rotationZ = Mathf.Lerp(oldRotate.z, -90f, swingCurve.Evaluate(t));
             handle.eulerAngles = new Vector3(0, 0, rotationZ);
 
-            Debug.Log(rotationZ);
-
             yield return 0; 
         }
 
@@ -102,7 +101,28 @@ public class AttackAnimation : MonoBehaviour
         while (transform.position != new Vector3(-6.94f, 0, 0))
         {
             t += Time.deltaTime;
+
             transform.position = Vector3.Lerp(oldPos, new Vector3(-6.94f, 0, 0), moveCurve.Evaluate(t));
+
+            yield return 0;
+        }
+
+        returnSwingAct = StartCoroutine(swingReturn());
+
+    }
+
+    public IEnumerator swingReturn()
+    {
+
+        oldRotate = handle.eulerAngles;
+
+        t = 0f;
+        while (rotationZ != 0f)
+        {
+
+            t += Time.deltaTime;
+            rotationZ = Mathf.Lerp(oldRotate.z, 0f, swingCurve.Evaluate(t));
+            handle.eulerAngles = new Vector3(0, 0, rotationZ);
 
             yield return 0;
         }
