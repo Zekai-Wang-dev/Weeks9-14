@@ -28,7 +28,8 @@ public class AttackAnimation : MonoBehaviour
     public Coroutine returnSwingAct;
 
     public UnityEvent enemyatkEvent;
-    public UnityEvent disableEvent; 
+    public UnityEvent disableEvent;
+    public UnityEvent enemyTakeDamageEvent; 
 
     private void Awake()
     {
@@ -94,6 +95,7 @@ public class AttackAnimation : MonoBehaviour
         }
 
         returnAct = StartCoroutine(animateReturn());
+        enemyTakeDamageEvent.Invoke();
 
     }
 

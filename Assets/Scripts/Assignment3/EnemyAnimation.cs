@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class EnemyAnimation : MonoBehaviour
 {
+    public float damage; 
 
     public AnimationCurve moveCurve;
     public AnimationCurve swingCurve;
@@ -29,6 +30,7 @@ public class EnemyAnimation : MonoBehaviour
     public Coroutine returnSwingAct;
 
     public UnityEvent disableEvent;
+    public UnityEvent playerTakeDamageEvent; 
 
     private void Awake()
     {
@@ -80,6 +82,7 @@ public class EnemyAnimation : MonoBehaviour
         }
 
         returnAct = StartCoroutine(animateReturn());
+        playerTakeDamageEvent.Invoke();
 
     }
 
