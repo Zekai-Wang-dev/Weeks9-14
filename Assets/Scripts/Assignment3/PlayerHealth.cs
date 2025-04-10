@@ -9,6 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
+    public float damage;
+
+    public float oldDamage;
+    public float newDamage; 
+
     public Slider healthBar; 
 
     // Start is called before the first frame update
@@ -16,7 +21,9 @@ public class PlayerHealth : MonoBehaviour
     {
 
         healthBar.maxValue = maxHealth;
-        currentHealth = maxHealth; 
+        currentHealth = maxHealth;
+
+        oldDamage = damage; 
         
     }
 
@@ -28,10 +35,23 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage()
     {
 
         currentHealth -= damage; 
+
+    }
+
+    public void blockDamage()
+    {
+
+        damage = newDamage; 
+
+    }
+
+    public void noblockDamage()
+    {
+        damage = oldDamage; 
 
     }
 

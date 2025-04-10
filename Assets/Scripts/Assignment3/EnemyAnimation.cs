@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    public float damage; 
+    public float damage;
+
+    public GameObject shield; 
 
     public AnimationCurve moveCurve;
     public AnimationCurve swingCurve;
@@ -29,7 +31,9 @@ public class EnemyAnimation : MonoBehaviour
     public Coroutine returnAct;
     public Coroutine returnSwingAct;
 
-    public UnityEvent disableEvent;
+    public UnityEvent enableEvent;
+    public UnityEvent disableEvent; 
+
     public UnityEvent playerTakeDamageEvent; 
 
     private void Awake()
@@ -52,6 +56,8 @@ public class EnemyAnimation : MonoBehaviour
 
         t = 0f;
         oldPos = transform.position;
+
+        disableEvent.Invoke();
 
         while (transform.position != enemyTrans.position)
         {
@@ -83,6 +89,7 @@ public class EnemyAnimation : MonoBehaviour
 
         returnAct = StartCoroutine(animateReturn());
         playerTakeDamageEvent.Invoke();
+        shield.SetActive(false);
 
     }
 
@@ -121,7 +128,7 @@ public class EnemyAnimation : MonoBehaviour
             yield return 0;
         }
 
-        disableEvent.Invoke();
+        enableEvent.Invoke();
 
     }
 }
