@@ -29,6 +29,7 @@ public class ParticleEmitter : MonoBehaviour
     {
 
         particles.maxParticles = key;
+        particles.Play(); 
 
     }
 
