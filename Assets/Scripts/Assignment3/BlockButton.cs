@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlockButton : MonoBehaviour
 {
-
+    //Variables for the block button to function so that the player understands they are blocking. 
     public Button blockButton;
 
     public GameObject shield;
@@ -32,7 +32,7 @@ public class BlockButton : MonoBehaviour
 
     public void blockAttack()
     {
-
+        //Making the shield appear so that the player understands they are blocking. 
         shield.SetActive(true);
         blockEvent.Invoke();
 
@@ -40,7 +40,7 @@ public class BlockButton : MonoBehaviour
 
     public void changeCurrentState()
     {
-
+        //Change the state of the boolean that control blocking so that the player can't press it multiple times, causing errors. 
         blocking = !blocking;
 
         if (blocking)

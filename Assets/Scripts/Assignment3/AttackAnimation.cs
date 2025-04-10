@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class AttackAnimation : MonoBehaviour
 {
+    //All the variables for the animation of the enemy attacking so that the player understands that they has attacked
     public AnimationCurve moveCurve;
     public AnimationCurve swingCurve;
 
@@ -33,7 +34,7 @@ public class AttackAnimation : MonoBehaviour
 
     private void Awake()
     {
-
+        //Getting the components so that the program understands which component that they should be using. 
         transform = GetComponent<Transform>();
         plrSr = GetComponent<SpriteRenderer>();
 
@@ -61,7 +62,10 @@ public class AttackAnimation : MonoBehaviour
 
     public IEnumerator animateAttack()
     {
+        //Invoking a disable event that disables all the buttons so that there is only one coroutine playing at a time. 
         disableEvent.Invoke();
+
+        //Setting timer back to 0 and make the player move to the enemies location to begin its attack. 
 
         t = 0f; 
         oldPos = transform.position; 
@@ -80,6 +84,7 @@ public class AttackAnimation : MonoBehaviour
 
     public IEnumerator animateSwing()
     {
+        //Setting timer back to 0 and make the player swing its sword so that the player knows they have attacked
 
         oldRotate = handle.eulerAngles; 
 
@@ -101,6 +106,7 @@ public class AttackAnimation : MonoBehaviour
 
     public IEnumerator animateReturn()
     {
+        //Setting timer back to 0 and make the player go back to its original position so that the character does not move infinitely. 
 
         t = 0f;
         oldPos = transform.position;
@@ -120,6 +126,7 @@ public class AttackAnimation : MonoBehaviour
 
     public IEnumerator swingReturn()
     {
+        //Return the swinged sword back to its original position so that next time it swings, it's not in a awkward position. 
 
         oldRotate = handle.eulerAngles;
 
@@ -134,6 +141,7 @@ public class AttackAnimation : MonoBehaviour
             yield return 0;
         }
 
+        //Invoke the enemy attack event so that the enemy has a chance to fight back. 
         enemyatkEvent.Invoke();
 
     }

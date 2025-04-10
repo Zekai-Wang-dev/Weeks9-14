@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class EnemyAnimation : MonoBehaviour
 {
+
+    //All the variables for the animation of the enemy attacking so that the player understands that the enemy has attacked
     public float damage;
 
     public GameObject shield; 
@@ -38,7 +40,7 @@ public class EnemyAnimation : MonoBehaviour
 
     private void Awake()
     {
-
+        //Getting the components so that the program understands which component that they should be using. 
         transform = GetComponent<Transform>();
         plrSr = GetComponent<SpriteRenderer>();
 
@@ -46,14 +48,14 @@ public class EnemyAnimation : MonoBehaviour
 
     public void activateAttack()
     {
-
+        //Starting the animation of attacking so that the player knows they are beginning to attack 
         atkAct = StartCoroutine(animateAttack());
 
     }
 
     public IEnumerator animateAttack()
     {
-
+        //Setting timer back to 0 and make the player move to the enemies location to begin its attack. 
         t = 0f;
         oldPos = transform.position;
 
@@ -73,7 +75,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public IEnumerator animateSwing()
     {
-
+        //Setting timer back to 0 and make the player swing its sword so that the player knows they have attacked
         oldRotate = handle.eulerAngles;
 
         t = 0f;
@@ -95,7 +97,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public IEnumerator animateReturn()
     {
-
+        //Setting timer back to 0 and make the player go back to its original position so that the character does not move infinitely. 
         t = 0f;
         oldPos = transform.position;
 
@@ -114,7 +116,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public IEnumerator swingReturn()
     {
-
+        //Return the swinged sword back to its original position so that next time it swings, it's not in a awkward position. 
         oldRotate = handle.eulerAngles;
 
         t = 0f;
